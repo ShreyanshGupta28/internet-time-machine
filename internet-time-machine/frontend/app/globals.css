@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Backgrounds */
+  --bg-base:        #080c18;
+  --bg-primary:     #0a0f1e;
+  --bg-secondary:   #0e1528;
+  --bg-card:        #121a30;
+  --bg-elevated:    #172038;
+  --bg-input:       #0e1528;
+
+  /* Borders */
+  --border-subtle:  #1a2540;
+  --border-default: #1e2d50;
+  --border-bright:  #2a3d6a;
+
+  /* Accents */
+  --gold:           #c9a227;
+  --gold-light:     #e4ba40;
+  --gold-dim:       #8a6c18;
+  --amber:          #f59e0b;
+  --teal:           #14b8a6;
+  --blue:           #3b82f6;
+
+  /* Text */
+  --text-primary:   #eef2ff;
+  --text-secondary: #8899bb;
+  --text-muted:     #4a5d7a;
+  --text-gold:      #c9a227;
+
+  /* Status */
+  --success:        #22c55e;
+  --error:          #ef4444;
+  --warning:        #f59e0b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography classes */
+.font-display { font-family: 'Playfair Display', serif; }
+.font-mono    { font-family: 'JetBrains Mono', monospace; }
+
+/* Shimmer animation for skeletons */
+@keyframes shimmer {
+  0%   { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 25%,
+    var(--bg-elevated) 50%,
+    var(--bg-card) 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 6px;
+}
+
+/* Gold glow for interactive focus */
+.gold-glow:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+
+/* Prose styling for AI biography markdown */
+.prose-biography {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+.prose-biography h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  margin-top: 1.5rem;
+}
+.prose-biography p  { margin-bottom: 1rem; }
+.prose-biography strong { color: var(--text-primary); font-weight: 600; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
